@@ -3,5 +3,6 @@ class AboutController < ApplicationController
   end
 
   def show
+    @about_page = PageContent.find_by(page_name: PageName.find_by(name: 'About'))
   end
 end
