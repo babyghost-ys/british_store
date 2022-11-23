@@ -1,3 +1,5 @@
+# Import
+
 # Remove the existing data
 AdminUser.delete_all
 Product.delete_all
@@ -16,7 +18,13 @@ about_page = PageName.find_or_create_by(name: 'About')
 PageContent.find_or_create_by(header: 'About Us', content: 'About page content', page_name: about_page)
 
 # Create the categories
-Category.find_or_create_by(name: "Clothes")
+category_clothes = Category.find_or_create_by(name: "Clothes")
+t_shirt = Product.find_or_create_by(name: "T-Shirt", current_price: 10.00, category: category_clothes)
+t_shirt.image.attach(
+  io:  File.open(File.join(Rails.root,'app/assets/images/dbimports/tshirt.jpg')),
+  filename: 'tshirt.jpg'
+)
+
 Category.find_or_create_by(name: "Home & Decor")
 Category.find_or_create_by(name: "Tea")
 Category.find_or_create_by(name: "British Snacks")
