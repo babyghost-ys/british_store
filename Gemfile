@@ -3,6 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.1.2"
 
+# Faker
+gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'main'
+
 # Pagination
 gem 'kaminari'
 
