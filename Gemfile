@@ -3,6 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.1.2"
 
+# Download files
+gem "down", "~> 5.0"
+
 # Faker
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'main'
 

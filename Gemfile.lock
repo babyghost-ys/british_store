@@ -114,6 +114,8 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    down (5.3.1)
+      addressable (~> 2.8)
     erubi (1.11.0)
     ffi (1.15.5)
     formtastic (4.0.0)
@@ -296,6 +298,7 @@ DEPENDENCIES
   capybara
   debug
   devise
+  down (~> 5.0)
   faker!
   image_processing
   importmap-rails

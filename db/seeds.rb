@@ -1,4 +1,10 @@
 # Import
+require 'uri'
+require 'net/http'
+require 'openssl'
+require 'json'
+require 'down'
+require 'fileutils'
 
 # Remove the existing data
 AdminUser.delete_all
@@ -6,6 +12,20 @@ Product.delete_all
 Category.delete_all
 PageContent.delete_all
 PageName.delete_all
+
+# Function to fetch data
+def fetch_data(urlString)
+  url = URI(urlString)
+
+  http = Net::HTTP.new(url.host, url.port)
+  http.use_ssl = true
+  http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+  request = Net::HTTP::Get.new(url)
+
+  response = http.request(request)
+  JSON.parse(response.read_body)
+end
 
 # Create the ActiveAdmin user
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
@@ -80,3 +100,28 @@ harrypotter.image.attach(
   io: File.open(File.join(Rails.root,'app/assets/images/dbimports/harrypotter.jpg')),
   filename: 'harrypotter.jpg'
 )
+
+# Fetch APIs from cached server
+
+# Main code to fetch the API
+# Queens API
+queens_json = fetch_data('https://webdev2.winandmac.com/ukapis/queen.json')
+queens = queens_json['data']
+
+# Loop through the returned items
+queens.each do |queen|
+  new_queen_item = Product.find_or_create_by(
+    name: queen['product_title'],
+    description: queen['product_description'],
+    current_price: (queen['offer']['price'].gsub("£", "").to_f * 1.61).round(2),
+    category: other_category
+  )
+
+  tempfile = Down.download(queen['product_photos'][0])
+  FileUtils.mv(tempfile.path, "#{Rails.root}/app/assets/images/dbimports/queen/#{queen['product_title']}.jpg")
+
+  new_queen_item.image.attach(
+    io: File.open(File.join(Rails.root,"app/assets/images/dbimports/queen/#{queen['product_title']}.jpg")),
+    filename: "#{queen['product_title']}.jpg"
+  )
+end
