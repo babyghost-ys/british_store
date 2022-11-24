@@ -105,6 +105,9 @@ harrypotter.image.attach(
 
 # Main code to fetch the API
 # Queens API
+# Create the download directory first
+FileUtils.mkdir_p("#{Rails.root}/app/assets/images/dbimports/download/queen")
+
 queens_json = fetch_data('https://webdev2.winandmac.com/ukapis/queen.json')
 queens = queens_json['data']
 
@@ -118,10 +121,82 @@ queens.each do |queen|
   )
 
   tempfile = Down.download(queen['product_photos'][0])
-  FileUtils.mv(tempfile.path, "#{Rails.root}/app/assets/images/dbimports/queen/#{queen['product_title']}.jpg")
+  FileUtils.mv(tempfile.path, "#{Rails.root}/app/assets/images/dbimports/download/queen/#{queen['product_id']}.jpg")
 
   new_queen_item.image.attach(
-    io: File.open(File.join(Rails.root,"app/assets/images/dbimports/queen/#{queen['product_title']}.jpg")),
-    filename: "#{queen['product_title']}.jpg"
+    io: File.open(File.join(Rails.root,"app/assets/images/dbimports/download/queen/#{queen['product_id']}.jpg")),
+    filename: "#{queen['product_id']}.jpg"
+  )
+end
+
+# T-Shirt API
+FileUtils.mkdir_p("#{Rails.root}/app/assets/images/dbimports/download/tshirt")
+
+tshirt_json = fetch_data('https://webdev2.winandmac.com/ukapis/tshirt.json')
+tshirts = tshirt_json['data']
+
+# Loop through the returned items
+tshirts.each do |tshirt|
+  new_tshirt_item = Product.find_or_create_by(
+    name: tshirt['product_title'],
+    description: tshirt['product_description'],
+    current_price: (tshirt['offer']['price'].gsub("£", "").to_f * 1.61).round(2),
+    category: category_clothes
+  )
+
+  tempfile = Down.download(tshirt['product_photos'][0])
+  FileUtils.mv(tempfile.path, "#{Rails.root}/app/assets/images/dbimports/download/tshirt/#{tshirt['product_id'].gsub(":", "")}.jpg")
+
+  new_tshirt_item.image.attach(
+    io: File.open(File.join(Rails.root,"app/assets/images/dbimports/download/tshirt/#{tshirt['product_id'].gsub(":", "")}.jpg")),
+    filename: "#{tshirt['product_id'].gsub(":", "")}.jpg"
+  )
+end
+
+# Tea API
+FileUtils.mkdir_p("#{Rails.root}/app/assets/images/dbimports/download/tea")
+
+tea_json = fetch_data('https://webdev2.winandmac.com/ukapis/uktea.json')
+teas = tea_json['data']
+
+# Loop through the returned items
+teas.each do |tea|
+  new_tea_item = Product.find_or_create_by(
+    name: tea['product_title'],
+    description: tea['product_description'],
+    current_price: (tea['offer']['price'].gsub("£", "").to_f * 1.61).round(2),
+    category: tea_category
+  )
+
+  tempfile = Down.download(tea['product_photos'][0])
+  FileUtils.mv(tempfile.path, "#{Rails.root}/app/assets/images/dbimports/download/tea/#{tea['product_id'].gsub(":", "")}.jpg")
+
+  new_tea_item.image.attach(
+    io: File.open(File.join(Rails.root,"app/assets/images/dbimports/download/tea/#{tea['product_id'].gsub(":", "")}.jpg")),
+    filename: "#{tea['product_id'].gsub(":", "")}.jpg"
+  )
+end
+
+# UK Crisps API
+FileUtils.mkdir_p("#{Rails.root}/app/assets/images/dbimports/download/crisps")
+
+crisps_json = fetch_data('https://webdev2.winandmac.com/ukapis/ukcrisps.json')
+crisps = crisps_json['data']
+
+# Loop through the returned items
+crisps.each do |crisp|
+  new_crisp_item = Product.find_or_create_by(
+    name: crisp['product_title'],
+    description: crisp['product_description'],
+    current_price: (crisp['offer']['price'].gsub("£", "").to_f * 1.61).round(2),
+    category: snacks_category
+  )
+
+  tempfile = Down.download(crisp['product_photos'][0])
+  FileUtils.mv(tempfile.path, "#{Rails.root}/app/assets/images/dbimports/download/tea/#{crisp['product_id']}.jpg")
+
+  new_crisp_item.image.attach(
+    io: File.open(File.join(Rails.root,"app/assets/images/dbimports/download/tea/#{crisp['product_id']}.jpg")),
+    filename: "#{crisp['product_id']}.jpg"
   )
 end

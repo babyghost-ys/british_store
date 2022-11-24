@@ -5,7 +5,7 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 # Ignore the download images folder
-/app/assets/images/dbimports/queen
+/app/assets/images/dbimports/download
 
 # Ignore bundler config.
 /.bundle
