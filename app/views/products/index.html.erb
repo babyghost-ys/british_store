@@ -52,7 +52,7 @@
     options_from_collection_for_select(@categories, :id, :name, 0),
     :prompt => "All" %>
           <%= text_field_tag(:q, nil, class: "form-control form-control-dark text-bg-dark", placeholder: 'Search') %>
-          <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          <button type="submit" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
   Search
 </button>
         <% end %>
