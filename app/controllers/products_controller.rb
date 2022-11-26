@@ -6,4 +6,9 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
   end
+
+  def search
+    @param_q = params[:q]
+    @param_catid = params[:id]
+  end
 end
