@@ -1,6 +1,12 @@
-Q: <%= @param_q %>
-Cat ID: <%= @param_catid %>
 
+Cat ID: <%= @param_catid %>
+<%= form_with(url: search_products_path, method: :get, local: true, class: "col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3") do %>
+
+          <%= text_field_tag(:q, @param_q, class: "form-control form-control-dark text-bg-dark", placeholder: 'Search') %>
+          <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+  Search
+</button>
+        <% end %>
 <div class="bg-white">
   <div class="mx-auto max-w-2xl py-16 px-4 sm:py-6 sm:px-6 lg:max-w-7xl lg:px-8">
 <%= paginate @products %>
