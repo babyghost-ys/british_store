@@ -4,5 +4,6 @@ class ContactsController < ApplicationController
 
   def show
     @contact_page = PageContent.find_by(page_name: PageName.find_by(name: 'Contact'))
+    @categories = Category.all
   end
 end
