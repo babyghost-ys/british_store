@@ -3,8 +3,6 @@ Rails.application.routes.draw do
   get 'about/show'
   get 'contacts/index'
   get 'contacts/show'
-  get 'categories/index'
-  get 'categories/show'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -19,4 +17,6 @@ Rails.application.routes.draw do
   end
 
   resources :categories, only: [:index, :show]
+
+  resources :cart, only: %i[create destroy]
 end
