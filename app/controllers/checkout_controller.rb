@@ -25,7 +25,7 @@ class CheckoutController < ApplicationController
     # Create Stripe Session
     @session = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
-      success_url: checkout_success_url,
+      success_url: checkout_success_url + '?session_id={CHECKOUT_SESSION_ID}',
       cancel_url: checkout_cancel_url,
       line_items: [@line_items_dict],
       automatic_tax: {
@@ -41,6 +41,7 @@ class CheckoutController < ApplicationController
 
   def success
     @categories = Category.all
+    @session_stripe = Stripe::Checkout::Session.retrieve(params[:session_id])
   end
 
   def cancel
