@@ -1,12 +1,7 @@
 <%= render "common/menu", current_page: "products" %>
-test
 <% if flash[:notice] %>
     <p><%= flash[:notice] %></p>
 <% end %>
-<% @cart.each do |cart_item| %>
-<p><%= cart_item["quantity"] %></p>
-<% end %>
-<%= @cart.map{ |item| item["id"]}  %>
 <div class="bg-white">
   <div class="pt-6">
     <nav aria-label="Breadcrumb">

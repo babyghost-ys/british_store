@@ -26,9 +26,9 @@
                   <li class="flex py-6">
                     <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                       <% if product.image.present? %>
-              <%= image_tag product.image, class: "w-full h-full object-center object-cover group-hover:opacity-75" %>
-            <% end %>
-            </div>
+                        <%= image_tag product.image, class: "w-full h-full object-center object-cover group-hover:opacity-75" %>
+                      <% end %>
+                    </div>
                     <div class="ml-4 flex flex-1 flex-col">
                       <div>
                         <div class="flex justify-between text-base font-medium text-gray-900">
@@ -37,7 +37,6 @@
                           </h3>
                           <p class="ml-4">CA$<%= product.current_price %></p>
                         </div>
-
                       </div>
                       <div class="flex flex-1 items-end justify-between text-sm">
                         <p class="text-gray-500">Qty 1</p>

@@ -3,6 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.1.2"
 
+# Stripe
+gem "stripe"
+
 # Download files
 gem "down", "~> 5.0"
 
