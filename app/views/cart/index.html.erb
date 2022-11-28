@@ -24,6 +24,9 @@
                         <a href="/products/<%= product.id %>" class="font-medium text-gray-700 hover:text-gray-800"><%= product.name %></a>
                       </h3>
                       <p class="mt-1 text-sm text-gray-500">Quantity: <%= @cart[index]["quantity"] %></p>
+                      <% if @cart[index]["quantity"] > 1 %>
+                        <p class="mt-1 text-sm text-gray-500">CA$<%= product.current_price %> each</p>
+                      <% end %>
                     </div>
                     <p class="text-right text-sm font-medium text-gray-900">CA$<%= (@cart[index]["quantity"] * product.current_price).round(2) %></p>
                   </div>
