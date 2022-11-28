@@ -3,38 +3,31 @@ class CheckoutController < ApplicationController
   def create
     # Establish a connection with Stripe and then redirect the user to the payment
 
+    # Create the line items object for the payment
+    @cart_items = session[:shopping_cart]
+    @line_items_dict = []
+    @cart_items.each do |item|
+      @product = Product.find(item["id"])
+      @line_items_dict << {
+        price_data: {
+          currency: 'cad',
+          unit_amount: @product.current_price.to_s.gsub(".", "_").to_i,
+          product_data: {
+            name: @product.name,
+            description: @product.description,
+          },
+          tax_behavior: 'exclusive',
+        },
+        quantity: item["quantity"],
+      }
+    end
+
     # Create Stripe Session
     @session = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
       success_url: checkout_success_url,
       cancel_url: checkout_cancel_url,
-      line_items: [
-        {
-          price_data: {
-            currency: 'cad',
-            unit_amount: 123_4,
-            product_data: {
-              name: "test",
-              description: "product.description",
-            },
-            tax_behavior: 'exclusive',
-          },
-          quantity: 1,
-        },
-        {
-          price_data: {
-            currency: 'cad',
-            unit_amount: 50_01,
-            product_data: {
-              name: "Another Product",
-              description: "test123",
-            },
-            tax_behavior: 'exclusive',
-          },
-          quantity: 1,
-        },
-
-      ],
+      line_items: [@line_items_dict],
       automatic_tax: {
         enabled: true
       },
