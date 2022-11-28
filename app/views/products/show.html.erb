@@ -1,6 +1,26 @@
 <%= render "common/menu", current_page: "products" %>
 <% if flash[:notice] %>
-    <p><%= flash[:notice] %></p>
+  <div class="bg-indigo-600">
+    <div class="mx-auto max-w-7xl py-3 px-3 sm:px-6 lg:px-8">
+      <div class="flex flex-wrap items-center justify-between">
+        <div class="flex w-0 flex-1 items-center">
+          <span class="flex rounded-lg bg-indigo-800 p-2">
+            <!-- Heroicon name: outline/megaphone -->
+            <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.34 15.84c-.688-.06-1.386-.09-2.09-.09H7.5a4.5 4.5 0 110-9h.75c.704 0 1.402-.03 2.09-.09m0 9.18c.253.962.584 1.892.985 2.783.247.55.06 1.21-.463 1.511l-.657.38c-.551.318-1.26.117-1.527-.461a20.845 20.845 0 01-1.44-4.282m3.102.069a18.03 18.03 0 01-.59-4.59c0-1.586.205-3.124.59-4.59m0 9.18a23.848 23.848 0 018.835 2.535M10.34 6.66a23.847 23.847 0 008.835-2.535m0 0A23.74 23.74 0 0018.795 3m.38 1.125a23.91 23.91 0 011.014 5.395m-1.014 8.855c-.118.38-.245.754-.38 1.125m.38-1.125a23.91 23.91 0 001.014-5.395m0-3.46c.495.413.811 1.035.811 1.73 0 .695-.316 1.317-.811 1.73m0-3.46a24.347 24.347 0 010 3.46" />
+            </svg>
+          </span>
+          <p class="ml-3 truncate font-medium text-white">
+            <span class="md:hidden">Product added to cart.</span>
+            <span class="hidden md:inline"><%= flash[:notice] %></span>
+          </p>
+        </div>
+        <div class="order-3 mt-2 w-full flex-shrink-0 sm:order-2 sm:mt-0 sm:w-auto">
+          <a href="/cart/" class="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-2 text-sm font-medium text-indigo-600 shadow-sm hover:bg-indigo-50">View Cart</a>
+        </div>
+      </div>
+    </div>
+  </div>
 <% end %>
 <div class="bg-white">
   <div class="pt-6">
@@ -42,10 +62,46 @@
       <div class="mt-4 lg:row-span-3 lg:mt-0">
         <h2 class="sr-only">Product information</h2>
         <p class="text-3xl tracking-tight text-gray-900">CA$<%= @product.current_price %></p>
-        <%= form_with class: "mt-10", url:cart_index_path, method: :post do %>
-           <%= hidden_field_tag(:id, @product.id) %>
-          <%= hidden_field_tag(:quantity, 1) %>
-          <button type="submit" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Add to bag</button>
+        <% if @already_in_cart %>
+          <%= form_with url:cart_path(@product), class:"mt-10", method: :put do %>
+            <!-- Colors -->
+            <%= hidden_field_tag(:id, @product.id) %>
+            <div>
+              <h3 class="text-sm font-medium text-gray-900">Quantity</h3>
+              <fieldset class="mt-2">
+                <legend class="sr-only">Update quantity</legend>
+                <div class="flex items-center space-x-3">
+                  <%= text_field_tag(:update_quantity, @current_item_quantity, type: 'number', min:"1", max:"50", class:"block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm") %>
+                </div>
+                <div class="relative flex flex-grow items-stretch focus-within:z-10">
+                  <button type="submit" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                    Update Quantity
+                  </button>
+                </div>
+                <div class="relative flex flex-grow items-stretch focus-within:z-10">
+                  <a href="/cart/" class="w-full">
+                    <button type="button" class="mt-2 flex w-full items-center justify-center rounded-md border border-gray-300 bg-white px-8 py-3 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                    View Shopping Cart
+                    </button>
+                  </a>
+                </div>
+              </fieldset>
+            </div>
+          <% end %>
+          <%= form_with url:cart_path(@product), method: :delete, data: {turbo_method: :delete, turbo_confirm: 'Are you sure you want to remove this item from the cart?'} do %>
+            <%= hidden_field_tag(:id, @product.id) %>
+            <button type="submit" class="ml-4 text-sm font-medium text-indigo-600 hover:text-indigo-500 sm:ml-0 sm:mt-3">
+              <span>Remove from the cart</span>
+            </button>
+          <% end %>
+        <% else %>
+          <%= form_with class: "mt-10", url:cart_index_path, method: :post do %>
+            <%= hidden_field_tag(:id, @product.id) %>
+            <%= hidden_field_tag(:quantity, 1) %>
+            <button type="submit" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+              Add to cart
+            </button>
+          <% end %>
         <% end %>
       </div>
       <div class="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pt-6 lg:pb-16 lg:pr-8">
