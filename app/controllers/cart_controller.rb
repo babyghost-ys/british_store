@@ -11,4 +11,20 @@ class CartController < ApplicationController
 
     redirect_to product_path(current_id)
   end
+
+  def index
+    @categories = Category.all
+
+    @cart = session[:shopping_cart]
+    @products = []
+
+    @cart.each do |item|
+      @products << Product.find(item["id"])
+    end
+
+    @total = 0
+    @products.each do |product|
+      @total += product.current_price
+    end
+  end
 end
