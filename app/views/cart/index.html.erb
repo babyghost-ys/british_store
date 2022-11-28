@@ -1,6 +1,6 @@
 <%= render "common/menu", current_page: "cart" %>
 <% if flash[:notice] %>
-    <p><%= flash[:notice] %></p>
+  <p><%= flash[:notice] %></p>
 <% end %>
 <div class="bg-white">
   <div class="mx-auto max-w-4xl py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
@@ -25,21 +25,24 @@
                       </h3>
                       <p class="mt-1 text-sm text-gray-500">Quantity: <%= @cart[index]["quantity"] %></p>
                     </div>
-                    <p class="text-right text-sm font-medium text-gray-900">CA$<%= product.current_price %></p>
+                    <p class="text-right text-sm font-medium text-gray-900">CA$<%= (@cart[index]["quantity"] * product.current_price).round(2) %></p>
                   </div>
                   <div class="mt-4 flex items-center sm:absolute sm:top-0 sm:left-1/2 sm:mt-0 sm:block">
                     <div class="mt-1 flex rounded-md shadow-sm">
-                      <div class="relative flex flex-grow items-stretch focus-within:z-10">
-                        <input value="1" type="number" min="1" max="50" name="quantity" id="quantity" class="block w-16 pl-3 rounded-none rounded-l-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                      </div>
-                      <button type="button" class="relative -ml-px inline-flex items-center space-x-2 rounded-r-md border border-gray-300 bg-gray-50 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
-                        <span>Update</span>
-                      </button>
+                      <%= form_with url:cart_path(product), method: :put do %>
+                        <%= hidden_field_tag(:id, product.id) %>
+                        <div class="relative flex flex-grow items-stretch focus-within:z-10">
+                          <%= text_field_tag(:update_quantity, @cart[index]["quantity"], type: 'number', min:"1", max:"50", class:"block w-16 pl-3 rounded-none rounded-l-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm") %>
+                          <button type="submit" class="relative -ml-px inline-flex items-center space-x-2 rounded-r-md border border-gray-300 bg-gray-50 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                            <span>Update</span>
+                          </button>
+                        </div>
+                      <% end %>
                     </div>
                     <%= form_with url:cart_path(product), method: :delete do %>
                       <%= hidden_field_tag(:id, product.id) %>
                       <button type="submit" class="ml-4 text-sm font-medium text-indigo-600 hover:text-indigo-500 sm:ml-0 sm:mt-3">
-                        <span><%= product.id %></span>
+                        <span>Remove</span>
                       </button>
                     <% end %>
                   </div>

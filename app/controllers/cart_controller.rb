@@ -18,6 +18,13 @@ class CartController < ApplicationController
     redirect_to cart_index_path()
   end
 
+  def update
+    current_id = params[:id]
+    update_quantity = params[:update_quantity].to_i
+    session[:shopping_cart].find { |item| item["id"] == current_id }["quantity"] = update_quantity
+    redirect_to cart_index_path()
+  end
+
   def index
     @categories = Category.all
 
