@@ -14,9 +14,10 @@ class CartController < ApplicationController
   end
 
   def destroy
+    curent_page = params[:current_page]
     current_id = params[:id]
     session[:shopping_cart].delete_if { |item| item["id"] == current_id }
-    if product_path(current_id)
+    if curent_page == "products"
       redirect_to product_path(current_id)
       flash[:notice] = "Item removed from cart."
     else
@@ -25,10 +26,11 @@ class CartController < ApplicationController
   end
 
   def update
+    curent_page = params[:current_page]
     current_id = params[:id]
     update_quantity = params[:update_quantity].to_i
     session[:shopping_cart].find { |item| item["id"] == current_id }["quantity"] = update_quantity
-    if product_path(current_id)
+    if curent_page == "products"
       redirect_to product_path(current_id)
       flash[:notice] = "Item quantity updated."
     else

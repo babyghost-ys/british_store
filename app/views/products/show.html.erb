@@ -66,6 +66,7 @@
           <%= form_with url:cart_path(@product), class:"mt-10", method: :put do %>
             <!-- Colors -->
             <%= hidden_field_tag(:id, @product.id) %>
+            <%= hidden_field_tag(:current_page, "products") %>
             <div>
               <h3 class="text-sm font-medium text-gray-900">Quantity</h3>
               <fieldset class="mt-2">
