@@ -37,7 +37,7 @@ class CartController < ApplicationController
 
     @total = 0
     @products.each do |product|
-      @total += product.current_price
+      @total += product.current_price * session[:shopping_cart].find { |item| item["id"] == product.id.to_s }["quantity"]
     end
   end
 end

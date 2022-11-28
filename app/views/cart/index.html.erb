@@ -68,19 +68,16 @@
             <dl class="-my-4 divide-y divide-gray-200 text-sm">
               <div class="flex items-center justify-between py-4">
                 <dt class="text-gray-600">Subtotal</dt>
-                <dd class="font-medium text-gray-900">$99.00</dd>
+                <dd class="font-medium text-gray-900">CA$<%= @total.round(2) %></dd>
               </div>
-              <div class="flex items-center justify-between py-4">
-                <dt class="text-gray-600">Shipping</dt>
-                <dd class="font-medium text-gray-900">$5.00</dd>
-              </div>
+
               <div class="flex items-center justify-between py-4">
                 <dt class="text-gray-600">Tax</dt>
-                <dd class="font-medium text-gray-900">$8.32</dd>
+                <dd class="font-medium text-gray-900">Calculated at the next step.</dd>
               </div>
               <div class="flex items-center justify-between py-4">
                 <dt class="text-base font-medium text-gray-900">Order total</dt>
-                <dd class="text-base font-medium text-gray-900">$112.32</dd>
+                <dd class="text-base font-medium text-gray-900">CA$<%= @total.round(2) %> + tax</dd>
               </div>
             </dl>
           </div>
@@ -91,7 +88,7 @@
         <div class="mt-6 text-center text-sm text-gray-500">
           <p>
             or
-            <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">
+            <a href="/" class="font-medium text-indigo-600 hover:text-indigo-500">
               Continue Shopping
               <span aria-hidden="true"> &rarr;</span>
             </a>
