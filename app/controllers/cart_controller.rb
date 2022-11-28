@@ -12,6 +12,12 @@ class CartController < ApplicationController
     redirect_to product_path(current_id)
   end
 
+  def destroy
+    current_id = params[:id]
+    session[:shopping_cart].delete_if { |item| item["id"] == current_id }
+    redirect_to cart_index_path()
+  end
+
   def index
     @categories = Category.all
 

@@ -1,5 +1,7 @@
 <%= render "common/menu", current_page: "cart" %>
-
+<% if flash[:notice] %>
+    <p><%= flash[:notice] %></p>
+<% end %>
 <div class="bg-white">
   <div class="mx-auto max-w-4xl py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
     <h1 class="text-3xl font-bold tracking-tight text-gray-900">Shopping Cart</h1>
@@ -34,9 +36,12 @@
                         <span>Update</span>
                       </button>
                     </div>
-                    <button type="button" class="ml-4 text-sm font-medium text-indigo-600 hover:text-indigo-500 sm:ml-0 sm:mt-3">
-                      <span>Remove</span>
-                    </button>
+                    <%= form_with url:cart_path(product), method: :delete do %>
+                      <%= hidden_field_tag(:id, product.id) %>
+                      <button type="submit" class="ml-4 text-sm font-medium text-indigo-600 hover:text-indigo-500 sm:ml-0 sm:mt-3">
+                        <span><%= product.id %></span>
+                      </button>
+                    <% end %>
                   </div>
                 </div>
                 <p class="mt-4 flex space-x-2 text-sm text-gray-700">
@@ -93,4 +98,3 @@
     </form>
   </div>
 </div>
-
