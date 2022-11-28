@@ -40,10 +40,10 @@ class CheckoutController < ApplicationController
   end
 
   def success
-
+    @categories = Category.all
   end
 
   def cancel
-
+    @categories = Category.all
   end
 end
