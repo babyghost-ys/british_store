@@ -89,4 +89,9 @@ group :test do
   gem "webdrivers"
 end
 
+group :production do
+  # Use PG as the production database
+  gem "pg"
+end
+
 gem "tailwindcss-rails", "~> 2.0"

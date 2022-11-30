@@ -171,6 +171,7 @@ GEM
     method_source (1.0.0)
     mini_magick (4.11.0)
     mini_mime (1.1.2)
+    mini_portile2 (2.8.0)
     minitest (5.16.3)
     msgpack (1.6.0)
     net-imap (0.3.1)
@@ -182,9 +183,15 @@ GEM
     net-smtp (0.3.3)
       net-protocol
     nio4r (2.5.8)
+    nokogiri (1.13.9)
+      mini_portile2 (~> 2.8.0)
+      racc (~> 1.4)
     nokogiri (1.13.9-x86_64-darwin)
       racc (~> 1.4)
+    nokogiri (1.13.9-x86_64-linux)
+      racc (~> 1.4)
     orm_adapter (0.5.0)
+    pg (1.4.5)
     public_suffix (5.0.0)
     puma (5.6.5)
       nio4r (~> 2.0)
@@ -256,11 +263,18 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
+    sqlite3 (1.5.4)
+      mini_portile2 (~> 2.8.0)
     sqlite3 (1.5.4-x86_64-darwin)
+    sqlite3 (1.5.4-x86_64-linux)
     stimulus-rails (1.1.1)
       railties (>= 6.0.0)
     stripe (8.0.0)
+    tailwindcss-rails (2.0.21)
+      railties (>= 6.0.0)
     tailwindcss-rails (2.0.21-x86_64-darwin)
+      railties (>= 6.0.0)
+    tailwindcss-rails (2.0.21-x86_64-linux)
       railties (>= 6.0.0)
     thor (1.2.1)
     tilt (2.0.11)
@@ -291,7 +305,9 @@ GEM
     zeitwerk (2.6.6)
 
 PLATFORMS
+  ruby
   x86_64-darwin-22
+  x86_64-linux
 
 DEPENDENCIES
   activeadmin
@@ -305,6 +321,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   kaminari
+  pg
   puma (~> 5.0)
   rails (~> 7.0.4)
   sass-rails
