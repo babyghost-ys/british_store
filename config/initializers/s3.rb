@@ -1,4 +1,4 @@
-require 'aws-sdk'
+require 'aws-sdk-s3'
 
 Aws.config.update(
   access_key_id: ENV['S3_KEY'],
