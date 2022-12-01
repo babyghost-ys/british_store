@@ -339,6 +339,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   kaminari
+  mini_magick (~> 4.8)
   pg
   puma (~> 5.0)
   rails (~> 7.0.4)
