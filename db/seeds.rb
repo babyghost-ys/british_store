@@ -29,6 +29,7 @@ end
 
 # Create the ActiveAdmin user
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+AdminUser.create!(email: 'tips-hk@winandmac.com', password: 'U!Tb7UJUMdtiiQ@', password_confirmation: 'U!Tb7UJUMdtiiQ@') if Rails.env.production?
 
 # Create the database entries for the Contact and About pages
 contact_page = PageName.find_or_create_by(name: 'Contact')
