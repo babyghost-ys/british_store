@@ -44,12 +44,25 @@ class CheckoutController < ApplicationController
     @session_stripe = Stripe::Checkout::Session.retrieve(params[:session_id])
 
     # Create a new entry in the Customers table
-    @customer = Customer.find_or_create_by(name: @session_stripe.customer_details.name, email: @session_stripe.customer_details.email)
+    @customer = Customer.find_or_create_by(
+      name: @session_stripe.customer_details.name,
+      email: @session_stripe.customer_details.email,
+      phone: @session_stripe.customer_details.phone,
+      address_line1: @session_stripe.customer_details.address.line1,
+      address_line2: @session_stripe.customer_details.address.line2,
+      address_city: @session_stripe.customer_details.address.city,
+      address_country: @session_stripe.customer_details.address.country,
+      address_postal: @session_stripe.customer_details.address.postal_code,)
 
     # Create a new entry in the orders table
     @order = Order.new
     @order.payment_intent = @session_stripe.payment_intent
     @order.customer_id = @customer.id
+    @order.payment_status = @session_stripe.payment_status
+    @order.payment_method = @session_stripe.payment_method_types[0]
+    @order.amount_total = @session_stripe.amount_total
+    @order.amount_subtotal = @session_stripe.amount_subtotal
+    @order.stripe_status = @session_stripe.status
     @order.save
 
     # Create entries in the OrderDetails table
