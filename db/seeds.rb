@@ -7,6 +7,9 @@ require 'down'
 require 'fileutils'
 
 # Remove the existing data
+OrderDetail.delete_all
+Order.delete_all
+Customer.delete_all
 AdminUser.delete_all
 Product.delete_all
 Category.delete_all
