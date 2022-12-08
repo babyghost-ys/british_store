@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  payment_intent: MyString
+  payment_status: MyString
+  payment_method: MyString
+  amount_total: 1.5
+  amount_subtotal: 1.5
+  unix_timestamp: 1
+  purchase_address: MyString
+  stripe_status: MyString
+  order_status: MyString
+
+two:
+  payment_intent: MyString
+  payment_status: MyString
+  payment_method: MyString
+  amount_total: 1.5
+  amount_subtotal: 1.5
+  unix_timestamp: 1
+  purchase_address: MyString
+  stripe_status: MyString
+  order_status: MyString

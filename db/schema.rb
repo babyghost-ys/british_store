@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_23_103937) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_08_053929) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -68,6 +68,33 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_23_103937) do
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "phone"
+    t.string "address_city"
+    t.string "address_line1"
+    t.string "address_line2"
+    t.string "address_country"
+    t.string "address_postal"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "payment_intent"
+    t.string "payment_status"
+    t.string "payment_method"
+    t.float "amount_total"
+    t.float "amount_subtotal"
+    t.integer "unix_timestamp"
+    t.string "purchase_address"
+    t.string "stripe_status"
+    t.string "order_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
