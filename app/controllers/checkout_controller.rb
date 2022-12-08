@@ -43,10 +43,21 @@ class CheckoutController < ApplicationController
     @categories = Category.all
     @session_stripe = Stripe::Checkout::Session.retrieve(params[:session_id])
 
-    # Create a new entry in the order table
+    # Create a new entry in the orders table
     @order = Order.new
     @order.payment_intent = @session_stripe.payment_intent
     @order.save
+
+    # Create entries in the OrderDetails table
+    @cart_items = session[:shopping_cart]
+    @cart_items.each do |item|
+      @order_detail = OrderDetail.new
+      @order_detail.order_id = @order.id
+      @order_detail.product_id = item["id"]
+      @order_detail.quantity = item["quantity"]
+      @order_detail.purchase_unit_price = Product.find(item["id"]).current_price
+      @order_detail.save
+    end
   end
 
   def cancel
