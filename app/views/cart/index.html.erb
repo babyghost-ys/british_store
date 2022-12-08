@@ -61,6 +61,19 @@
             </li>
           <% end %>
           <!-- More products... -->
+          <% if @products.count <= 0 %>
+          <li>
+            <p class="mt-2 text-base text-gray-500">Your cart is empty</p>
+            <p class="mt-2 text-base text-gray-500">Please click the following button to continue shopping.</p>
+                <div class="relative flex flex-grow items-stretch focus-within:z-10">
+                  <a href="/" class="w-full">
+                    <button type="button" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                      Continue Shopping
+                    </button>
+                  </a>
+                </div>
+          </li>
+          <% end %>
         </ul>
       </div>
       <!-- Order summary -->
@@ -84,20 +97,23 @@
             </dl>
           </div>
         </div>
-        <div class="mt-10">
-          <%= form_with url: checkout_create_path, data: { turbo: false } , remote: true do %>
-            <button type="submit" class="w-full rounded-md border border-transparent bg-indigo-600 py-3 px-4 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50">Checkout</button>
-          <% end %>
-        </div>
-        <div class="mt-6 text-center text-sm text-gray-500">
-          <p>
-            or
-            <a href="/" class="font-medium text-indigo-600 hover:text-indigo-500">
-              Continue Shopping
-              <span aria-hidden="true"> &rarr;</span>
-            </a>
-          </p>
-        </div>
+        <% if @products.count > 0 %>
+          <div class="mt-10">
+            <%= form_with url: checkout_create_path, data: { turbo: false } , remote: true do %>
+              <button type="submit" class="w-full rounded-md border border-transparent bg-indigo-600 py-3 px-4 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50">Checkout</button>
+            <% end %>
+          </div>
+
+          <div class="mt-6 text-center text-sm text-gray-500">
+            <p>
+              or
+              <a href="/" class="font-medium text-indigo-600 hover:text-indigo-500">
+                Continue Shopping
+                <span aria-hidden="true"> &rarr;</span>
+              </a>
+            </p>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
