@@ -42,6 +42,11 @@ class CheckoutController < ApplicationController
   def success
     @categories = Category.all
     @session_stripe = Stripe::Checkout::Session.retrieve(params[:session_id])
+
+    # Create a new entry in the order table
+    @order = Order.new
+    @order.payment_intent = @session_stripe.payment_intent
+    @order.save
   end
 
   def cancel
