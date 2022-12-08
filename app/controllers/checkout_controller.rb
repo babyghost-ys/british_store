@@ -60,14 +60,16 @@ class CheckoutController < ApplicationController
     @order.customer_id = @customer.id
     @order.payment_status = @session_stripe.payment_status
     @order.payment_method = @session_stripe.payment_method_types[0]
-    @order.amount_total = @session_stripe.amount_total
-    @order.amount_subtotal = @session_stripe.amount_subtotal
+    @order.amount_total = @session_stripe.amount_total.to_f / 100
+    @order.amount_subtotal = @session_stripe.amount_subtotal.to_f / 100
     @order.stripe_status = @session_stripe.status
     @order.save
 
     # Create entries in the OrderDetails table
+    @products = [] # Products list for displaying in the success page
     @cart_items = session[:shopping_cart]
     @cart_items.each do |item|
+      @products << Product.find(item["id"])
       @order_detail = OrderDetail.new
       @order_detail.order_id = @order.id
       @order_detail.product_id = item["id"]
