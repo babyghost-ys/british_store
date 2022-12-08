@@ -43,9 +43,13 @@ class CheckoutController < ApplicationController
     @categories = Category.all
     @session_stripe = Stripe::Checkout::Session.retrieve(params[:session_id])
 
+    # Create a new entry in the Customers table
+    @customer = Customer.find_or_create_by(name: @session_stripe.customer_details.name, email: @session_stripe.customer_details.email)
+
     # Create a new entry in the orders table
     @order = Order.new
     @order.payment_intent = @session_stripe.payment_intent
+    @order.customer_id = @customer.id
     @order.save
 
     # Create entries in the OrderDetails table
