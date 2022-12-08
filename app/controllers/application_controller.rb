@@ -5,8 +5,4 @@ class ApplicationController < ActionController::Base
   def initialize_session
     session[:shopping_cart] ||= [] # Set the shopping cart to an empty array if it doesn't exist
   end
-
-  def cart
-    # Product.find(session[:shopping_cart])
-  end
 end
