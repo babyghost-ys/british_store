@@ -22,4 +22,22 @@ ActiveAdmin.register Product do
     end
     f.actions         # adds the 'Submit' and 'Cancel' buttons
   end
+
+  show do
+    panel "Product Details" do
+      attributes_table_for product do
+        row :sku
+        row :name
+        row :description
+        row :current_price
+        row :status
+        row :category
+        row :created_at
+        row :updated_at
+        row :image do
+          image_tag(product.image, size: "300x300")
+        end
+      end
+    end
+  end
 end
