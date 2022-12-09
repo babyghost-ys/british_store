@@ -69,6 +69,7 @@ class CheckoutController < ApplicationController
     @order.purchase_address_city = @session_stripe.customer_details.address.city
     @order.purchase_address_country = @session_stripe.customer_details.address.country
     @order.purchase_address_postal = @session_stripe.customer_details.address.postal_code
+    @order.order_status_id = OrderStatus.find_by(name: "paid").id
     @order.save
 
     # Create entries in the OrderDetails table
