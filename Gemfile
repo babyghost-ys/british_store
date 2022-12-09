@@ -24,6 +24,7 @@ gem 'activeadmin'
 gem 'devise'
 gem 'sass-rails'
 gem 'image_processing'
+gem 'country_select'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4"
