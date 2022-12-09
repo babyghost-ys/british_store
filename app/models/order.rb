@@ -1,6 +1,6 @@
 class Order < ApplicationRecord
-  validates :amount_total, presence: true, numericality: { greater_than: 0 }
-  validates :amount_subtotal, presence: true, numericality: { greater_than: 0 }
+  validates :amount_total, presence: true, numericality: true
+  validates :amount_subtotal, presence: true, numericality: true
 
   belongs_to :customer
   belongs_to :order_status
