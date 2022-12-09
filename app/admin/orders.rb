@@ -6,7 +6,7 @@ ActiveAdmin.register Order do
   # Uncomment all parameters which should be permitted for assignment
   #
   menu false
-  permit_params :payment_intent, :payment_status, :payment_method, :amount_total, :amount_subtotal, :unix_timestamp, :stripe_status, :order_status, :customer_id, :amount_tax, :purchase_address_city, :purchase_address_line1, :purchase_address_line2, :purchase_address_country, :purchase_address_postal
+  permit_params :order_status_id,:payment_intent, :payment_status, :payment_method, :amount_total, :amount_subtotal, :unix_timestamp, :stripe_status, :order_status, :customer_id, :amount_tax, :purchase_address_city, :purchase_address_line1, :purchase_address_line2, :purchase_address_country, :purchase_address_postal
   #
   # or
   #
