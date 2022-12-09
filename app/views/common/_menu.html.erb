@@ -1,6 +1,6 @@
 <nav class="bg-gray-800">
   <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-    <div class="relative flex h-16 items-center justify-between">
+    <div class="sm:relative sm:flex sm:h-16 sm:items-center sm:justify-between">
       <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
         <div class="hidden sm:ml-6 sm:block">
           <div class="flex space-x-4">
@@ -35,17 +35,23 @@
               <% else %>
                 text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium
               <% end %>">Cart</a>
+            <a href="/products/search/" class="block lg:hidden
+              <% if current_page == "search_results" %>
+                bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium
+              <% else %>
+                text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium
+              <% end %>">Search</a>
           </div>
         </div>
       </div>
-      <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+      <div class="hidden lg:block">
         <%= form_with(url: search_products_path, method: :get, local: true, class: "col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3") do %>
           <% if current_page == "search_results" %>
             <%= select_tag (:id), options_from_collection_for_select(@categories, :id, :name,  { selected: search_catid }), :prompt => "All" %>
-            <%= text_field_tag(:q, search_q, class: "form-control form-control-dark text-bg-dark", placeholder: 'Search') %>
+            <%= text_field_tag(:q, search_q, class: "form-control form-control-dark text-bg-dark w-52", placeholder: 'Search') %>
           <% else %>
             <%= select_tag (:id), options_from_collection_for_select(@categories, :id, :name, 0), :prompt => "All" %>
-            <%= text_field_tag(:q, nil, class: "form-control form-control-dark text-bg-dark", placeholder: 'Search') %>
+            <%= text_field_tag(:q, nil, class: "form-control form-control-dark text-bg-dark w-52", placeholder: 'Search') %>
           <% end %>
           <button type="submit" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
             Search
@@ -58,10 +64,42 @@
   <div class="sm:hidden" id="mobile-menu">
     <div class="space-y-1 px-2 pt-2 pb-3">
       <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-      <a href="#" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Dashboard</a>
-      <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Team</a>
-      <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Projects</a>
-      <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Calendar</a>
+      <a href="/" class="
+              <% if current_page == "products" %>
+                bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium
+              <% else %>
+                text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium
+              <% end %>">Store</a>
+      <a href="/categories/" class="
+            <% if current_page == "categories" %>
+                bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium
+              <% else %>
+                text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium
+              <% end %>">Categories</a>
+      <a href="/contacts/show" class="
+              <% if current_page == "contact" %>
+                bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium
+              <% else %>
+                text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium
+              <% end %>">Contact</a>
+      <a href="/about/show" class="
+              <% if current_page == "about" %>
+                bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium
+              <% else %>
+                text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium
+              <% end %>">About</a>
+      <a href="/cart/" class="
+              <% if current_page == "cart" %>
+                bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium
+              <% else %>
+                text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium
+              <% end %>">Cart</a>
+      <a href="/products/search/" class="block lg:hidden
+              <% if current_page == "search_results" %>
+                bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium
+              <% else %>
+                text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium
+              <% end %>">Search</a>
     </div>
   </div>
 </nav>
