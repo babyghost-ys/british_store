@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_09_065506) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_09_065756) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -119,7 +119,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_09_065506) do
     t.string "purchase_address_line2"
     t.string "purchase_address_country"
     t.string "purchase_address_postal"
+    t.integer "order_status_id", null: false
     t.index ["customer_id"], name: "index_orders_on_customer_id"
+    t.index ["order_status_id"], name: "index_orders_on_order_status_id"
   end
 
   create_table "page_contents", force: :cascade do |t|
@@ -154,6 +156,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_09_065506) do
   add_foreign_key "order_details", "orders"
   add_foreign_key "order_details", "products"
   add_foreign_key "orders", "customers"
+  add_foreign_key "orders", "order_statuses"
   add_foreign_key "page_contents", "page_names"
   add_foreign_key "products", "categories"
 end
