@@ -5,6 +5,7 @@ ActiveAdmin.register OrderStatus do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
+  menu false
   permit_params :name
   #
   # or

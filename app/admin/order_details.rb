@@ -5,6 +5,7 @@ ActiveAdmin.register OrderDetail do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
+  menu false
   permit_params :quantity, :purchase_unit_price, :order_id, :product_id
   filter :order_id, as: :select, collection: -> {Order.all.map{|o| ["#{o.id} - #{o.payment_intent}", o.id]}}
   #
