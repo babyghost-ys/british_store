@@ -3,7 +3,6 @@ class CartController < ApplicationController
     current_id = params[:id]
     @product = Product.find(current_id)
     if session[:shopping_cart].map { |item| item["id"] }.include?(current_id)
-      # session[:shopping_cart].find { |item| item["id"] == current_id }["quantity"] = 1
       flash[:notice] = "You already added this item at index to your cart. Click View Cart to change the quantity. "
     else
       session[:shopping_cart] << { "id" => params[:id], "quantity" => params[:quantity].to_i }
