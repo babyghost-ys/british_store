@@ -16,7 +16,7 @@
       <% @products.each_with_index do |product, index| %>
         <div class="flex space-x-6 border-b border-gray-200 py-10">
           <% if product.image.present? %>
-            <%= image_tag product.image, class: "h-20 w-20 flex-none rounded-lg bg-gray-100 object-cover object-center sm:h-40 sm:w-40" %>
+            <%= image_tag product.image, class: "h-20 w-20 flex-none rounded-lg bg-gray-100 object-cover object-center sm:h-40 sm:w-40", alt:product.name %>
           <% end %>
           <div class="flex flex-auto flex-col">
             <div>

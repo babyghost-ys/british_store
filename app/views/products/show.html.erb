@@ -50,7 +50,7 @@
     <!-- Image gallery -->
     <div class="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
       <% if @product.image.present? %>
-        <%= image_tag @product.image, class: "w-full h-full object-center object-cover group-hover:opacity-75" %>
+        <%= image_tag @product.image, class: "w-full h-full object-center object-cover group-hover:opacity-75", alt:@product.name %>
       <% end %>
     </div>
     <!-- Product info -->

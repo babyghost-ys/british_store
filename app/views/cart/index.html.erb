@@ -13,7 +13,7 @@
             <li class="flex py-6 sm:py-10">
               <div class="flex-shrink-0">
                 <% if product.image.present? %>
-                  <%= image_tag product.image, class: "h-24 w-24 rounded-lg object-cover object-center sm:h-32 sm:w-32" %>
+                  <%= image_tag product.image, class: "h-24 w-24 rounded-lg object-cover object-center sm:h-32 sm:w-32", alt:product.name %>
                 <% end %>
               </div>
               <div class="relative ml-4 flex flex-1 flex-col justify-between sm:ml-6">
