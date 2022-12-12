@@ -32,9 +32,9 @@ def fetch_data(urlString)
 end
 
 # Create the order status
-OrderStatus.find_or_create_by(name: 'new')
-OrderStatus.find_or_create_by(name: 'paid')
-OrderStatus.find_or_create_by(name: 'shipped')
+OrderStatus.find_or_create_by(name: 'New')
+OrderStatus.find_or_create_by(name: 'Paid')
+OrderStatus.find_or_create_by(name: 'Shipped')
 
 # Create the ActiveAdmin user
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

@@ -64,12 +64,13 @@ class CheckoutController < ApplicationController
     @order.amount_subtotal = @session_stripe.amount_subtotal.to_f / 100
     @order.amount_tax = @session_stripe.total_details.amount_tax.to_f / 100
     @order.stripe_status = @session_stripe.status
+    @order.unix_timestamp = @session_stripe.created
     @order.purchase_address_line1 = @session_stripe.customer_details.address.line1
     @order.purchase_address_line2 = @session_stripe.customer_details.address.line2
     @order.purchase_address_city = @session_stripe.customer_details.address.city
     @order.purchase_address_country = @session_stripe.customer_details.address.country
     @order.purchase_address_postal = @session_stripe.customer_details.address.postal_code
-    @order.order_status_id = OrderStatus.find_by(name: "paid").id
+    @order.order_status_id = OrderStatus.find_by(name: "Paid").id
     @order.save
 
     # Create entries in the OrderDetails table
