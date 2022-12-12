@@ -1,24 +1,11 @@
-# README
+# Ruby on Rails Project for school
+# The Very British Store
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Step 1. Clone the project
 
-Things you may want to cover:
+Step 2. Follow the guideline here to make the tailwind CSS works (EXCEPT Step 1, 3, 4, 6): https://tailwindcss.com/docs/guides/ruby-on-rails 
 
-* Ruby version
+Step 3. Have fun.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+You can also access my site at heroku: 
+https://enigmatic-ridge-88421.herokuapp.com
