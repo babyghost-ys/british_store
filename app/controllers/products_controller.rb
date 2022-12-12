@@ -24,11 +24,11 @@ class ProductsController < ApplicationController
     category_id = "#{params[:cat_id]}"
 
     if (category_id == "")
-      @products = Product.where("name LIKE '?' OR description LIKE '?'", wildcard_search, wildcard_search).page(params[:page])
+      @products = Product.where("name LIKE ? OR description LIKE ?", wildcard_search, wildcard_search).page(params[:page])
       @category_name_string = "all categories"
     else
       @category_name_string = "the " + Category.where(id: category_id).pluck(:name).first + " category"
-      @products = Product.where("name LIKE '?' OR description LIKE '?'", wildcard_search, wildcard_search).where(categories: category_id).page(params[:page])
+      @products = Product.where("name LIKE ? OR description LIKE ?", wildcard_search, wildcard_search).where(categories: category_id).page(params[:page])
     end
   end
 end
