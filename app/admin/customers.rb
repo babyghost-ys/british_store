@@ -14,23 +14,6 @@ ActiveAdmin.register Customer do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  index do
-    selectable_column
-    id_column
-    column :name
-    column :email
-    column :phone
-    column :address_city
-    column :address_line1
-    column :address_line2
-    column :address_country
-    column :address_postal
-    column :created_at
-    column :updated_at
-    actions default: false do |customer|
-      link_to "Delete", admin_customer_path(customer), method: :delete, data: { confirm: "Are you sure you want to delete this customer? You will also delete the related order records!" }
-    end
-  end
   show do
     attributes_table do
       row :id
