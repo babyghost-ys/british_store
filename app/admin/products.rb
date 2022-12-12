@@ -40,4 +40,13 @@ ActiveAdmin.register Product do
       end
     end
   end
+
+  controller do
+    def destroy
+      product = Product.find(params[:id])
+      product.category.products.delete(product)
+      product.destroy
+      redirect_to admin_products_path, notice: "Product deleted"
+    end
+  end
 end
