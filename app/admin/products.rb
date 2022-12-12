@@ -33,7 +33,9 @@ ActiveAdmin.register Product do
         row :created_at
         row :updated_at
         row :image do
-          image_tag(product.image, size: "300x300")
+          if product.image.attached?
+            image_tag(product.image, size: "300x300")
+          end
         end
       end
     end
