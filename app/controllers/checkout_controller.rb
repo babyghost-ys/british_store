@@ -85,6 +85,8 @@ class CheckoutController < ApplicationController
       @order_detail.purchase_unit_price = Product.find(item["id"]).current_price
       @order_detail.save
     end
+
+    session[:shopping_cart] = []
   end
 
   def cancel
