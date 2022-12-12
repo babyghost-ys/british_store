@@ -14,5 +14,22 @@ ActiveAdmin.register Category do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-
+  show do
+    attributes_table do
+      row :id
+      row :name
+      row :description
+      row :created_at
+      row :updated_at
+    end
+    panel "Related Products" do
+      table_for category.products do
+        column :name do |product|
+          link_to product.name, admin_product_path(product)
+        end
+        column :description
+        column :current_price
+      end
+    end
+  end
 end
