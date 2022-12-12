@@ -14,6 +14,17 @@ ActiveAdmin.register Category do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
+  index do
+    selectable_column
+    id_column
+    column :name
+    column :description
+    column :created_at
+    column :updated_at
+    actions default: false do |category|
+      link_to "Delete", admin_category_path(category), method: :delete, data: { confirm: "Are you sure you want to delete this category? You will also delete the related products!" }
+    end
+  end
   show do
     attributes_table do
       row :id
