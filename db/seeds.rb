@@ -9,6 +9,7 @@ require 'fileutils'
 # Remove the existing data
 OrderDetail.delete_all
 Order.delete_all
+OrderStatus.delete_all
 Customer.delete_all
 AdminUser.delete_all
 Product.delete_all
@@ -29,6 +30,11 @@ def fetch_data(urlString)
   response = http.request(request)
   JSON.parse(response.read_body)
 end
+
+# Create the order status
+OrderStatus.find_or_create_by(name: 'new')
+OrderStatus.find_or_create_by(name: 'paid')
+OrderStatus.find_or_create_by(name: 'shipped')
 
 # Create the ActiveAdmin user
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
