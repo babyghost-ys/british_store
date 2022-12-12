@@ -48,7 +48,7 @@ about_page = PageName.find_or_create_by(name: 'About')
 PageContent.find_or_create_by(header: 'About Us', content: 'About page content', page_name: about_page)
 
 # Create the categories
-category_clothes = Category.find_or_create_by(name: "Clothes")
+category_clothes = Category.find_or_create_by(name: "Clothes", description: "Cool British Clothes")
 
 t_shirt = Product.find_or_create_by(name: "T-Shirt", description: "A cool T-shirt with a big UK flag.", current_price: Faker::Commerce.price(range: 10..20.0), category: category_clothes)
 t_shirt.image.attach(
@@ -56,7 +56,7 @@ t_shirt.image.attach(
   filename: 'tshirt.jpg'
 )
 
-home_category = Category.find_or_create_by(name: "Home & Decor")
+home_category = Category.find_or_create_by(name: "Home & Decor", description: "Cool British Home & Decor")
 ukmap = Product.find_or_create_by(name: "British Islands Geological Map", description: "Reproduction of 1969 Geological Map of The British Islands using satellite data to impose the topography onto the map. ", current_price: Faker::Commerce.price(range: 10.0..80.0), category: home_category)
 ukmap.image.attach(
   io: File.open(File.join(Rails.root,'app/assets/images/dbimports/ukmap.jpg')),
@@ -73,7 +73,7 @@ tube.image.attach(
   filename: 'tube.jpg'
 )
 
-tea_category = Category.find_or_create_by(name: "Tea")
+tea_category = Category.find_or_create_by(name: "Tea", description: "British Tea for your daily consumption")
 tea_set = Product.find_or_create_by(name: "M&S Tea and Biscuits Brit Kit", description: "Most Brits will agree, you simply can't beat a cup of tea with a nice biscuit, whether that’s in front of the TV or alongside a nice chat with a friend. M&S do a lot of things well, and making delicious tea and biscuits is one of them. So, to celebrate all things teatime we’ve put together a special assortment of our favourite M&S teas and biscuits. Including the classic Milk Chocolate Digestives & the indulgent All Butter Triple Belgian Chunk Cookies. Products shown will be included whilst stocks last. If out of stock, we will substitute with a similar product of equal value.", current_price: Faker::Commerce.price(range: 0..20.0), category: tea_category)
 tea_set.image.attach(
   io: File.open(File.join(Rails.root,'app/assets/images/dbimports/tea_set.jpg')),
@@ -90,21 +90,21 @@ y_tea2.image.attach(
   filename: 'y_tea2.jpg'
 )
 
-snacks_category = Category.find_or_create_by(name: "British Snacks")
+snacks_category = Category.find_or_create_by(name: "British Snacks", description: "British Snacks for your daily consumption")
 crisps = Product.find_or_create_by(name: "Crisps", description: "Crisps are a British snack food, made by Snack Foods Ltd.", current_price: Faker::Commerce.price(range: 5..10.0), category: snacks_category)
 crisps.image.attach(
   io: File.open(File.join(Rails.root,'app/assets/images/dbimports/crisps.jpg')),
   filename: 'crisps.jpg'
 )
 
-art_category = Category.find_or_create_by(name: "Art and Collectibles")
+art_category = Category.find_or_create_by(name: "Art and Collectibles", description: "British Art and Collectibles for your collections")
 ukflag = Product.find_or_create_by(name: "Union Jack Flag", description: "Made from aged unbleached linen, to create an antique finish, this Union Jack flag is finished with a wooden toggle. Signifying the the red cross of St George, the white saltire of St Andrew, and the red saltire of St Patrick. Product for indoor use only. Length: 100 cm x Height: 60 cm", current_price: Faker::Commerce.price(range: 10.0..40.0), category: art_category)
 ukflag.image.attach(
   io: File.open(File.join(Rails.root,'app/assets/images/dbimports/ukflag.jpg')),
   filename: 'ukflag.jpg'
 )
 
-other_category = Category.find_or_create_by(name: "Others")
+other_category = Category.find_or_create_by(name: "Others", description: "Other British products.")
 harrypotter = Product.find_or_create_by(name: "Harry Potter Books collection", description: "Harry Potter is a series of fantasy novels written by British author J. K. Rowling. The novels chronicle the life of a young wizard, Harry Potter, and his friends Hermione Granger and Ron Weasley, all of whom are students at Hogwarts School of Witchcraft and Wizardry. The main story arc concerns Harry's struggle against Lord Voldemort, a dark wizard who intends to become immortal, overthrow the wizard governing body known as the Ministry of Magic, and subjugate all wizards and muggles, a reference term that means non-magical people.", current_price: Faker::Commerce.price(range: 100.0..400.0), category: other_category)
 harrypotter.image.attach(
   io: File.open(File.join(Rails.root,'app/assets/images/dbimports/harrypotter.jpg')),

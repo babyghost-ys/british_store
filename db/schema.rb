@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_09_065756) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_12_032705) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -85,6 +85,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_09_065756) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "members", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_members_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
+  end
+
   create_table "order_details", force: :cascade do |t|
     t.integer "quantity"
     t.float "purchase_unit_price"
@@ -140,11 +152,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_09_065756) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.string "sku"
     t.string "name"
     t.text "description"
     t.float "current_price"
-    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "category_id", null: false

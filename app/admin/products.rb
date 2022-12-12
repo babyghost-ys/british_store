@@ -5,7 +5,7 @@ ActiveAdmin.register Product do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :sku, :name, :description, :current_price, :status, :category_id, :image
+  permit_params :name, :description, :current_price, :category_id, :image
   #
   # or
   #
@@ -26,11 +26,9 @@ ActiveAdmin.register Product do
   show do
     panel "Product Details" do
       attributes_table_for product do
-        row :sku
         row :name
         row :description
         row :current_price
-        row :status
         row :category
         row :created_at
         row :updated_at
