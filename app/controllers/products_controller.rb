@@ -18,10 +18,10 @@ class ProductsController < ApplicationController
 
   def search
     @param_q = params[:q]
-    @param_catid = params[:id]
+    @param_catid = params[:cat_id]
     @categories = Category.all
     wildcard_search = "%#{params[:q]}%"
-    category_id = "#{params[:id]}"
+    category_id = "#{params[:cat_id]}"
 
     if (category_id == "")
       @products = Product.where("name LIKE ? OR description LIKE ?", wildcard_search, wildcard_search).page(params[:page])

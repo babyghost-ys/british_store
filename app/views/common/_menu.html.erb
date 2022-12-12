@@ -47,10 +47,10 @@
       <div class="hidden lg:block">
         <%= form_with(url: search_products_path, method: :get, local: true, class: "col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3") do %>
           <% if current_page == "search_results" %>
-            <%= select_tag (:id), options_from_collection_for_select(@categories, :id, :name,  { selected: search_catid }), :prompt => "All" %>
+            <%= select_tag (:cat_id), options_from_collection_for_select(@categories, :id, :name,  { selected: search_catid }), :prompt => "All" %>
             <%= text_field_tag(:q, search_q, class: "form-control form-control-dark text-bg-dark w-52", placeholder: 'Search') %>
           <% else %>
-            <%= select_tag (:id), options_from_collection_for_select(@categories, :id, :name, 0), :prompt => "All" %>
+            <%= select_tag (:cat_id), options_from_collection_for_select(@categories, :id, :name, 0), :prompt => "All" %>
             <%= text_field_tag(:q, nil, class: "form-control form-control-dark text-bg-dark w-52", placeholder: 'Search') %>
           <% end %>
           <button type="submit" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">

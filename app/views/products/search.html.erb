@@ -3,7 +3,7 @@
   <div class="mx-auto max-w-2xl py-16 px-4 sm:py-6 sm:px-6 lg:max-w-7xl lg:px-8">
     <div class="block lg:hidden">
       <%= form_with(url: search_products_path, method: :get, local: true, class: "col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3") do %>
-        <%= select_tag (:id), options_from_collection_for_select(@categories, :id, :name,  { selected: @param_catid }), :prompt => "All", class:"w-full" %>
+        <%= select_tag (:cat_id), options_from_collection_for_select(@categories, :id, :name,  { selected: @param_catid }), :prompt => "All", class:"w-full" %>
         <%= text_field_tag(:q, @param_q, class: "mt-3 form-control form-control-dark text-bg-dark w-full", placeholder: 'Search') %>
         <button type="submit" class="mt-3 bg-gray-500 text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium w-full">
           Search
