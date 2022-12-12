@@ -52,4 +52,18 @@ ActiveAdmin.register Customer do
       end
     end
   end
+
+  controller do
+    def destroy
+      customer = Customer.find(params[:id])
+      customer.orders.each do |order|
+        order.order_details.each do |order_detail|
+          order_detail.destroy
+        end
+        order.destroy
+      end
+      customer.destroy
+      redirect_to admin_customers_path
+    end
+  end
 end
