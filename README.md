@@ -6,7 +6,7 @@ Step 2. Go to the project directory from now on. Then, run "bundle install"
 
 Step 3. Run "rails db:migrate", or just click on the "Run pending migration" prompt in the website.
 
-Step 4. Run "./bin/rails tailwindcss:install" (Mac) or "rails tailwindcss:install". You may see some conflicts. Just type "y" to confirm when you see that.
+Step 4. Run "rails tailwindcss:install" (Windows) or  "./bin/rails tailwindcss:install" (Mac). You may see some conflicts. Just type "y" to confirm when you see that.
 
 Step 5. Run "rails db:seed" if you want to populate some testing data.
 
