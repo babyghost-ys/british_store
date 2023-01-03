@@ -13,6 +13,3 @@ Step 5. Run "rails db:seed" if you want to populate some testing data.
 Step 6. Run "rails s" to start the site. If you want the Stripe Checkout (Cart) to work, please run "PUBLISHABLE_KEY=YourStripePublishableKey SECRET_KEY=YourStripeSecretKey rails s"
 
 PLEASE NOTE: This project is built in Ruby 3.1.2p20 with Rails 7.0.4.
-
-You can also access my site at heroku: 
-https://enigmatic-ridge-88421.herokuapp.com
